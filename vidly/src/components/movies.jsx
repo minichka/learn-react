@@ -6,6 +6,7 @@ import Filter from "./common/filter";
 import { paginate } from "../utils/paginate";
 import MoviesTable from "./moviesTable";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 
 class Movies extends Component {
   state = {
@@ -87,20 +88,28 @@ class Movies extends Component {
             />
           </div>
           <div className="col-9">
-            <b>Showing {totalCount} movies in the database</b>
-            <MoviesTable
-              movies={movies}
-              sortColumn={this.state.sortColumn}
-              onLike={this.handleLike}
-              onDelete={this.handleDelete}
-              onSort={this.handleSort}
-            />
-            <Pagination
-              itemsCount={totalCount}
-              pageSize={this.state.pageSize}
-              currentPage={this.state.currentPage}
-              onPageChange={this.handlePageChange}
-            />
+            <div className="row">
+              <Link to="/movies/new">
+                <button className="btn btn-primary">New Movie</button>
+              </Link>
+            </div>
+
+            <div className="row">
+              <b>Showing {totalCount} movies in the database</b>
+              <MoviesTable
+                movies={movies}
+                sortColumn={this.state.sortColumn}
+                onLike={this.handleLike}
+                onDelete={this.handleDelete}
+                onSort={this.handleSort}
+              />
+              <Pagination
+                itemsCount={totalCount}
+                pageSize={this.state.pageSize}
+                currentPage={this.state.currentPage}
+                onPageChange={this.handlePageChange}
+              />
+            </div>
           </div>
         </div>
       </div>
