@@ -102,6 +102,7 @@ class Movies extends Component {
       return <p>There are no movies in the database</p>;
     }
 
+    const { user } = this.props;
     const { totalCount, data: movies } = this.getPageData();
 
     return (
@@ -115,11 +116,13 @@ class Movies extends Component {
             />
           </div>
           <div className="col-9">
-            <div className="row">
-              <Link to="/movies/new">
-                <button className="btn btn-primary">New Movie</button>
-              </Link>
-            </div>
+            {user && (
+              <div className="row">
+                <Link to="/movies/new">
+                  <button className="btn btn-primary">New Movie</button>
+                </Link>
+              </div>
+            )}
 
             <div className="row">
               <b>Showing {totalCount} movies in the database</b>
